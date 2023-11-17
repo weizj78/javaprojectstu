@@ -12,6 +12,7 @@ import xyz.weizj.model.dto.system.LoginDto;
 import xyz.weizj.model.vo.common.Result;
 import xyz.weizj.model.vo.common.ResultCodeEnum;
 import xyz.weizj.model.vo.system.LoginVo;
+import xyz.weizj.model.vo.system.ValidateCodeVo;
 
 @RestController
 @Tag(name="用户接口")
@@ -27,4 +28,9 @@ public class IndexController {
         LoginVo loginVo = userService.login(loginDto);
         return Result.build(loginVo, ResultCodeEnum.SUCCESS);
     }
+
+
+//    public Result<ValidateCodeVo> generateValidateCode(){
+//
+//    }
 }
