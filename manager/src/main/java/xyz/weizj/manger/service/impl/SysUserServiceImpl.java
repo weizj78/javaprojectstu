@@ -1,7 +1,11 @@
 package xyz.weizj.manger.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -19,6 +23,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     SysUserMapper userMapper;
 
+    @Autowired
     protected RedisTemplate<String,String> redisTemplate;
 
     @Override
