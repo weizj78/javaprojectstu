@@ -1,9 +1,10 @@
 package xyz.weizj.manger.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import xyz.weizj.model.entity.system.SysUser;
 import xyz.weizj.model.entity.user.UserInfo;
 
 @Mapper
 public interface SysUserMapper {
-    UserInfo getUSerInfoByUserName(String username);
+    SysUser getUSerInfoByUserName(String username);
 }

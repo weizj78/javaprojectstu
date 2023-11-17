@@ -12,6 +12,7 @@ import org.springframework.util.DigestUtils;
 import xyz.weizj.manger.mapper.SysUserMapper;
 import xyz.weizj.manger.service.SysUserService;
 import xyz.weizj.model.dto.system.LoginDto;
+import xyz.weizj.model.entity.system.SysUser;
 import xyz.weizj.model.entity.user.UserInfo;
 import xyz.weizj.model.vo.system.LoginVo;
 
@@ -31,7 +32,7 @@ public class SysUserServiceImpl implements SysUserService {
         // 1.获取用户名
         String userName = loginDto.getUserName();
         // 2.根据用户名获取用户信息
-        UserInfo userInfo = userMapper.getUSerInfoByUserName(userName);
+        SysUser userInfo = userMapper.getUSerInfoByUserName(userName);
         // 3.根据用户名查询不到用户信息
         if (userInfo == null) {
             throw  new RuntimeException("用户名不存在");
