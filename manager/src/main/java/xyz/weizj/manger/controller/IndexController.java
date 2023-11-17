@@ -1,5 +1,6 @@
 package xyz.weizj.manger.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,8 @@ public class IndexController {
     @Autowired
     SysUserService userService;
 
-    @PostMapping
+    @Operation(summary = "登录")
+    @PostMapping("/login")
     public Result login(@RequestBody LoginDto loginDto){
         LoginVo loginVo = userService.login(loginDto);
         return Result.build(loginVo, ResultCodeEnum.SUCCESS);
