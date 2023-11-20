@@ -8,3 +8,5 @@ stu:
     noAuthUrls:
       - /admin/system/index/login
       - /admin/system/index/generateValidateCode
+      - /doc.html
+      - /doc.html/**

@@ -34,7 +34,7 @@ public class IndexController {
 
     @Operation(summary = "获取用户信息")
     @GetMapping(value = "/getUserInfo")
-    public Result<SysUser> getUserInfo(@RequestHeader String token){
+    public Result<SysUser> getUserInfo(){
         return Result.build(AuthContextUtil.get(),ResultCodeEnum.SUCCESS);
     }
 

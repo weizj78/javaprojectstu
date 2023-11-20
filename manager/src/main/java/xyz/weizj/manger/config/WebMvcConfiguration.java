@@ -22,7 +22,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginAuthInterceptor)
                 .excludePathPatterns(userAuthProperties.getNoAuthUrls())
-                .addPathPatterns("/**");
+                .addPathPatterns("/admin/system/**");
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 
