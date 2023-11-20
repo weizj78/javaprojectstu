@@ -3,3 +3,8 @@ spring:
     name: server-manager
   profiles:
     active: dev
+stu:
+  auth:
+    noAuthUrls:
+      - /admin/system/index/login
+      - /admin/system/index/generateValidateCode

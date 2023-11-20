@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.weizj.common.utils.AuthContextUtil;
 import xyz.weizj.manger.service.SysUserService;
 import xyz.weizj.manger.service.ValidateCodeService;
 import xyz.weizj.model.dto.system.LoginDto;
@@ -34,8 +35,7 @@ public class IndexController {
     @Operation(summary = "获取用户信息")
     @GetMapping(value = "/getUserInfo")
     public Result<SysUser> getUserInfo(@RequestHeader String token){
-        SysUser user = userService.getUserInfo(token);
-        return Result.build(user,ResultCodeEnum.SUCCESS);
+        return Result.build(AuthContextUtil.get(),ResultCodeEnum.SUCCESS);
     }
 
     @Operation(summary = "用户退出登录")
@@ -54,7 +54,7 @@ public class IndexController {
     }
 
     @Operation(summary = "获取验证码")
-    @GetMapping("generateValidateCode")
+    @GetMapping("/generateValidateCode")
     public Result<ValidateCodeVo> generateValidateCode(){
         ValidateCodeVo validateCodeVo = validateCodeService.generateValidateCode();
         return Result.build(validateCodeVo,ResultCodeEnum.SUCCESS);
