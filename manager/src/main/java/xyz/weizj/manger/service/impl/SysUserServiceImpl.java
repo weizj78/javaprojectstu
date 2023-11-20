@@ -1,11 +1,8 @@
 package xyz.weizj.manger.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -14,7 +11,6 @@ import xyz.weizj.manger.mapper.SysUserMapper;
 import xyz.weizj.manger.service.SysUserService;
 import xyz.weizj.model.dto.system.LoginDto;
 import xyz.weizj.model.entity.system.SysUser;
-import xyz.weizj.model.entity.user.UserInfo;
 import xyz.weizj.model.vo.common.ResultCodeEnum;
 import xyz.weizj.model.vo.system.LoginVo;
 
@@ -31,13 +27,23 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public LoginVo login(LoginDto loginDto) {
+
+        // 1。获取输入验证码与存储到redis的key的名称
+        String key = loginDto.getCodeKey();
+        String value = redisTemplate.opsForValue().get(key);
+        //2。 比较输入验证码与redis存储的验证码是否一致
+        if (StrUtil.isEmpty(value) ||!value.equalsIgnoreCase(loginDto.getCaptcha())){
+            throw new StuProjectException(ResultCodeEnum.VALIDATECODE_ERROR);
+        }
+        //4。验证成功，删除redis的key
+        redisTemplate.delete(key);
+
         // 1.获取用户名
         String userName = loginDto.getUserName();
         // 2.根据用户名获取用户信息
         SysUser userInfo = userMapper.getUSerInfoByUserName(userName);
         // 3.根据用户名查询不到用户信息
         if (userInfo == null) {
-//            throw  new RuntimeException("用户名不存在");
             throw new StuProjectException(ResultCodeEnum.LOGIN_ERROR);
         }
         // 4.用户名存在
@@ -46,7 +52,6 @@ public class SysUserServiceImpl implements SysUserService {
         inputPassword = DigestUtils.md5DigestAsHex(inputPassword.getBytes());
         // 5.获取输入密码，比较密码
         if(!inputPassword.equals(dataBasePassword)){
-//            throw new RuntimeException("密码不正确");
             throw new StuProjectException(ResultCodeEnum.LOGIN_ERROR);
         }
         // 6,登录成功，生成token
@@ -56,5 +61,20 @@ public class SysUserServiceImpl implements SysUserService {
         LoginVo loginVo = new LoginVo();
         loginVo.setToken(token);
         return loginVo;
+    }
+
+    public SysUser getUserInfo(String token){
+        // 1。从redis获取存储的值
+        String userJson = redisTemplate.opsForValue().get("user:login" + token);
+        if (userJson == null){
+            throw new StuProjectException(ResultCodeEnum.LOGIN_AUTH);
+        }
+        // 2。反序列化未token
+        return JSON.parseObject(userJson, SysUser.class);
+    }
+
+    @Override
+    public void logOut(String token) {
+        redisTemplate.delete("user:login" + token);
     }
 }
