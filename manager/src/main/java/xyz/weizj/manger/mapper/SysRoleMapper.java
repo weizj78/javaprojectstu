@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface SysRoleMapper {
     public abstract List<SysRole> findByPage(SysRoleDto sysRoleDto);
+
+    public abstract Integer saveSysRole(SysRole sysRole);
 }

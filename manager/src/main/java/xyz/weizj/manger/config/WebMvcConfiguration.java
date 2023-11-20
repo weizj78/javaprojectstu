@@ -18,13 +18,13 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     private UserAuthProperties userAuthProperties;
 
     // 拦截器注册
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginAuthInterceptor)
-                .excludePathPatterns(userAuthProperties.getNoAuthUrls())
-                .addPathPatterns("/admin/system/**");
-        WebMvcConfigurer.super.addInterceptors(registry);
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(loginAuthInterceptor)
+//                .excludePathPatterns(userAuthProperties.getNoAuthUrls())
+//                .addPathPatterns("/admin/system/**");
+//        WebMvcConfigurer.super.addInterceptors(registry);
+//    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

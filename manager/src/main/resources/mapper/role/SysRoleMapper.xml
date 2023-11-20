@@ -20,6 +20,10 @@
             and is_deleted=0
         </where>
     </sql>
+    <insert id="saveSysRole">
+        insert into sys_role (id,role_name,role_code,description)
+        values (#{id},#{roleName},#{roleCode},#{description});
+    </insert>
 
     <select id="findByPage" resultType="xyz.weizj.model.entity.system.SysRole">
         select <include refid="columns"/> from sys_role
