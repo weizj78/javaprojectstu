@@ -24,6 +24,24 @@
         insert into sys_role (id,role_name,role_code,description)
         values (#{id},#{roleName},#{roleCode},#{description});
     </insert>
+    <update id="updateSysRole">
+        update sys_role set
+        <if test="roleName != null and roleName != ''">
+            role_name = #{roleName},
+        </if>
+        <if test="roleCode != null and roleCode != ''">
+            role_code = #{roleCode},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+    <delete id="deleteById">
+        update sys_role set is_deleted=1 where id=#{roleId}
+    </delete>
 
     <select id="findByPage" resultType="xyz.weizj.model.entity.system.SysRole">
         select <include refid="columns"/> from sys_role
