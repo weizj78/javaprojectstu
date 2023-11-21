@@ -6,11 +6,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import xyz.weizj.manger.listener.ExcelListener;
 import xyz.weizj.manger.mapper.CategoryMapper;
 import xyz.weizj.manger.service.CategoryService;
 import xyz.weizj.model.entity.product.Category;
 import xyz.weizj.model.vo.product.CategoryExcelVo;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -63,6 +66,16 @@ public class CategoryServiceImpl implements CategoryService {
             EasyExcel.write(response.getOutputStream(),CategoryExcelVo.class)
                     .sheet("分类数据").doWrite(categoryExcelVoList);
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void importData(MultipartFile file) {
+        ExcelListener<CategoryExcelVo> excelVoExcelListener = new ExcelListener<>(categoryMapper);
+        try {
+            EasyExcel.read(file.getInputStream(),CategoryExcelVo.class,excelVoExcelListener).sheet().doRead();
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

@@ -11,4 +11,6 @@ public interface CategoryMapper {
     public abstract int countByParentId(Long id);
 
     public abstract List<Category> selectAll();
+
+    public abstract void batchInsert(List<Category> categoryList);
 }
