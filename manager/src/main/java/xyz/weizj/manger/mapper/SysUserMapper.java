@@ -1,6 +1,7 @@
 package xyz.weizj.manger.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import xyz.weizj.manger.service.SysUserService;
 import xyz.weizj.model.dto.system.SysUserDto;
 import xyz.weizj.model.entity.system.SysUser;

@@ -1,6 +1,7 @@
 package xyz.weizj.manger.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import xyz.weizj.model.dto.system.SysRoleDto;
 import xyz.weizj.model.entity.system.SysRole;
 
@@ -15,4 +16,5 @@ public interface SysRoleMapper {
     public abstract Integer updateSysRole(SysRole sysRole);
     public abstract void deleteById(Long roleId);
 
+    public abstract List<SysRole> findAllRoles();
 }

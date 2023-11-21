@@ -48,4 +48,8 @@
             <include refid="findPageWhere"/>
         order by id desc
     </select>
+    <select id="findAllRoles" resultMap="sysRoleMap">
+        select <include refid="columns" />
+        from sys_role where is_deleted = 0;
+    </select>
 </mapper>
