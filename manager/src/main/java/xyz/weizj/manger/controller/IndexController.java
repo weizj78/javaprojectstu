@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.weizj.common.utils.AuthContextUtil;
+import xyz.weizj.manger.service.SysMenuService;
 import xyz.weizj.manger.service.SysUserService;
 import xyz.weizj.manger.service.ValidateCodeService;
 import xyz.weizj.model.dto.system.LoginDto;
@@ -13,7 +14,10 @@ import xyz.weizj.model.entity.system.SysUser;
 import xyz.weizj.model.vo.common.Result;
 import xyz.weizj.model.vo.common.ResultCodeEnum;
 import xyz.weizj.model.vo.system.LoginVo;
+import xyz.weizj.model.vo.system.SysMenuVo;
 import xyz.weizj.model.vo.system.ValidateCodeVo;
+
+import java.util.List;
 
 @RestController
 @Tag(name="用户接口")
@@ -22,6 +26,9 @@ public class IndexController {
 
     @Autowired
     SysUserService userService;
+
+    @Autowired
+    SysMenuService sysMenuService;
 
     @Autowired
     ValidateCodeService validateCodeService;
@@ -58,5 +65,11 @@ public class IndexController {
     public Result<ValidateCodeVo> generateValidateCode(){
         ValidateCodeVo validateCodeVo = validateCodeService.generateValidateCode();
         return Result.build(validateCodeVo,ResultCodeEnum.SUCCESS);
+    }
+
+    @GetMapping("/menus")
+    public Result menus() {
+        List<SysMenuVo> sysMenuVoList =  sysMenuService.findUserMenuList() ;
+        return Result.build(sysMenuVoList , ResultCodeEnum.SUCCESS) ;
     }
 }
