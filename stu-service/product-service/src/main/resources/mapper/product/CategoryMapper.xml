@@ -10,7 +10,7 @@
 
     <select id="findOneCategory" resultType="xyz.weizj.model.entity.product.Category">
         select <include refid="columns"/>
-            from category where is_deleted = 0 AND status = 1 AND is_deleted = 0
+            from category where is_deleted = 0 AND status = 1 AND is_deleted = 0 AND parent_id = 0
             order by order_num
     </select>
     <select id="findAll" resultMap="categoryMap">
