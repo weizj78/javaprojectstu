@@ -13,6 +13,7 @@
         <module name="manager" />
         <module name="stu-user-client" />
         <module name="service-user" />
+        <module name="service-cart" />
         <module name="product-service" />
         <module name="model" />
         <module name="common-log" />
@@ -33,6 +34,7 @@
       <module name="manager" options="-parameters" />
       <module name="model" options="-parameters" />
       <module name="product-service" options="-parameters" />
+      <module name="service-cart" options="-parameters" />
       <module name="service-order" options="-parameters" />
       <module name="service-product" options="-parameters" />
       <module name="service-product-client" options="-parameters" />

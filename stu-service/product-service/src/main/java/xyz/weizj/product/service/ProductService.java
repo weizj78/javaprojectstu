@@ -15,4 +15,6 @@ public interface ProductService {
 
     // 业务接口
     ProductItemVo item(Long skuId);
+
+    ProductSku getBySkuId(Long skuId);
 }
