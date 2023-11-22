@@ -10,5 +10,10 @@
     <file url="file://$PROJECT_DIR$/model/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/stu-server-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/stu-service/product-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/stu-service/service-product/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/stu-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/stu-service/src/main/resources" charset="UTF-8" />
   </component>
 </project>

@@ -7,14 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="model" />
         <module name="common-util" />
-        <module name="common-log" />
         <module name="common-service" />
         <module name="manager" />
+        <module name="product-service" />
+        <module name="model" />
+        <module name="common-log" />
+        <module name="stu-server-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="service-product" target="17" />
       <module name="spzx-common" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -25,6 +28,10 @@
       <module name="common-util" options="-parameters" />
       <module name="manager" options="-parameters" />
       <module name="model" options="-parameters" />
+      <module name="product-service" options="-parameters" />
+      <module name="service-product" options="-parameters" />
+      <module name="stu-server-gateway" options="-parameters" />
+      <module name="stu-service" options="-parameters" />
     </option>
   </component>
 </project>
