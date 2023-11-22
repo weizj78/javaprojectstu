@@ -13,6 +13,7 @@ import xyz.weizj.model.dto.h5.ProductSkuDto;
 import xyz.weizj.model.entity.product.ProductSku;
 import xyz.weizj.model.vo.common.Result;
 import xyz.weizj.model.vo.common.ResultCodeEnum;
+import xyz.weizj.model.vo.h5.ProductItemVo;
 import xyz.weizj.product.service.ProductService;
 
 @Tag(name = "商品列表管理")
@@ -33,4 +34,11 @@ public class ProductController {
         return Result.build(pageInfo , ResultCodeEnum.SUCCESS) ;
     }
 
+
+    @Operation(summary = "商品详情")
+    @GetMapping("item/{skuId}")
+    public Result<ProductItemVo> item(@Parameter(name = "skuId", description = "商品skuId", required = true) @PathVariable Long skuId) {
+        ProductItemVo productItemVo = productService.item(skuId);
+        return Result.build(productItemVo , ResultCodeEnum.SUCCESS);
+    }
 }
