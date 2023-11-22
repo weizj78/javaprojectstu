@@ -16,7 +16,7 @@ import java.util.List;
 
 @Tag(name = "分类接口管理")
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/api/product/category")
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class CategoryController {

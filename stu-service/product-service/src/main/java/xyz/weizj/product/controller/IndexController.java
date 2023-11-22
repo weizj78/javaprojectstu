@@ -20,7 +20,7 @@ import java.util.List;
 
 @Tag(name = "首页接口管理")
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/api/product/index")
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class IndexController {
